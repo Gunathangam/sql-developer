@@ -1,0 +1,43 @@
+Task 4: Aggregate Functions and Grouping
+
+This task focuses on practicing SQL **aggregate functions** such as `COUNT`, `SUM`, `AVG`, and how to use `GROUP BY` and `HAVING` to summarize and analyze data.
+
+ What I Did:
+
+- Inserted more sample data into my movie database to enable better aggregation.
+- Used `COUNT()`, `AVG()`, and `GROUP BY` to generate meaningful insights.
+- Applied `HAVING` to filter grouped data based on specific conditions.
+- Connected related tables using `JOIN` to enhance query results.
+
+Schema Adjustments and Error Handling:
+
+While trying to use `AUTO_INCREMENT` on `movie_id` and `actor_id`, I encountered some common SQL errors:
+
+Problems Faced:
+
+1.Error 1068 – Multiple primary keys defined
+2.Error 1553 – Cannot drop primary key due to foreign key constraint
+3.Error 1833 – Cannot modify a column that is part of a foreign key
+
+ Fixes Applied
+
+Step 1: Temporarily dropped the foreign key from `movie_actor`
+Step 2: Altered the `movies` table to make `movie_id` `AUTO_INCREMENT`
+Step 3: Re-added the foreign key linking `movie_actor.movie_id → movies.movie_id`
+Repeated the same steps for `actor_id` in the `actors` table
+
+This allowed automatic ID assignment and prevented duplicate primary key errors during data insertion.
+
+
+Key SQL Concepts Used:
+
+'COUNT()`        - Count rows in a group or table              
+`AVG()`          - Calculate average of a numeric column       
+`GROUP BY`       - Group data by a column for aggregation      
+`HAVING`         -  Filter aggregated results                  
+`JOIN`           -  Combine data from multiple tables          
+`AUTO_INCREMENT` -  Automatically generate unique primary keys 
+
+
+
+
