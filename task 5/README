@@ -1,0 +1,29 @@
+Task 5: SQL Joins (Inner, Left, Right, Full)
+
+Internship Project – SQL Developer at Elevate Labs
+
+This task focuses on understanding and using different types of SQL **JOINS** to combine and analyze data across multiple related tables.
+
+ 🗂️ What I Did
+
+- Used the **movie database** created in earlier tasks.
+- Applied various JOIN operations to combine data from:
+  - `movies`
+  - `actors`
+  - `movie_actor`
+  - `genres`
+- Practiced different SQL JOIN types:
+  - `INNER JOIN`
+  - `LEFT JOIN`
+  - `RIGHT JOIN`
+  - `FULL OUTER JOIN` (simulated using `UNION` in MySQL)
+
+ 🔑 Key SQL Concepts Used
+
+| Join Type       | Description                                                                 |
+|------------------|-----------------------------------------------------------------------------|
+| `INNER JOIN`     | Returns rows when there is a match in both tables                          |
+| `LEFT JOIN`      | Returns all records from the left table and matched records from the right |
+| `RIGHT JOIN`     | Returns all records from the right table and matched records from the left |
+| `FULL OUTER JOIN`| Returns all records when there is a match in either table (simulated in MySQL) |
+
