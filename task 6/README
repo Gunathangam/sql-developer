@@ -1,0 +1,18 @@
+Task 6: Subqueries and Nested Queries
+Internship Project – SQL Developer at Elevate Labs
+This task focuses on learning how to use subqueries and nested queries to perform advanced filtering and data analysis in SQL using the movie database.
+
+What I Did :
+Used the existing movie database created in previous tasks.
+Practiced subqueries inside SELECT, WHERE, IN, EXISTS, and FROM clauses.
+Wrote scalar and correlated subqueries to retrieve filtered and calculated data.
+Simulated temporary tables using subqueries in FROM.
+
+Key SQL Concepts Used :
+Type of Subquery	Description
+Subquery in SELECT -	Used to calculate values like actor count for each movie
+Subquery in WHERE	  - Filters data using values returned from another query
+Subquery with IN	  - Checks if a value exists in a list returned by another query
+Correlated Subquery	- A subquery that references data from the outer query
+Subquery in FROM	  -  Acts like a temporary table (a derived table) for calculations
+EXISTS Subquery	     - Returns true if subquery returns any rows
