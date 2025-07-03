@@ -1,0 +1,18 @@
+🎯 Task 7: Creating Views
+🧪 Internship Project – SQL Developer at Elevate Labs
+This task focused on creating and using SQL views to simplify complex queries and support data abstraction in the movie database.
+
+🗂️ What I Did :
+Created views using the CREATE VIEW statement based on joined and grouped queries.
+
+Queried views just like regular tables.
+
+Demonstrated how views improve readability and reuse of logic.
+
+Used views to show movies with genres, actors in each movie, and movie counts by genre.
+
+🔑 Key SQL Concepts Used
+Concept	Description
+CREATE VIEW	              Creates a virtual table based on a SELECT query
+Reusable Logic	          Views store complex joins or aggregations for repeated use
+Security & Abstraction	  Views can hide certain columns or simplify access to specific data
