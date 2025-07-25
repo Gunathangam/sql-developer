@@ -1,0 +1,105 @@
+ 📦 Inventory and Warehouse Management System
+
+This project is a **SQL-based backend system** to manage inventory across multiple warehouses. It includes product tracking, supplier management, stock monitoring, reorder logic, and automation using triggers and stored procedures.
+
+## 📁 Project Structure
+
+inventory_warehouse_management/
+├── schema.sql # All CREATE TABLE statements
+├── insert_data.sql # Sample data for testing
+├── queries.sql # Useful queries for stock checks
+├── triggers.sql # Trigger for low-stock alert logging
+├── procedures.sql # Procedure to transfer stock between warehouses
+├── README.md # Project documentation
+
+pgsql
+Copy
+Edit
+
+## 🛠 Features
+
+- ✅ Manage **Products**, **Suppliers**, **Warehouses**, and **Stock**
+- ✅ Monitor inventory levels
+- ✅ Get alerts when stock goes below threshold
+- ✅ Perform stock transfer between warehouses
+- ✅ Automate alerts using **SQL triggers**
+- ✅ Use stored procedures to execute complex logic
+
+## 🗃 Database Schema
+
+### `Products`
+| Column      | Type          |
+|-------------|---------------|
+| ProductID   | INT (PK)      |
+| ProductName | VARCHAR(100)  |
+| Price       | DECIMAL(10,2) |
+
+### `Suppliers`
+| Column       | Type          |
+|--------------|---------------|
+| SupplierID   | INT (PK)      |
+| SupplierName | VARCHAR(100)  |
+| ContactInfo  | VARCHAR(100)  |
+
+### `Warehouses`
+| Column      | Type          |
+|-------------|---------------|
+| WarehouseID | INT (PK)      |
+| Location    | VARCHAR(100)  |
+
+### `Stock`
+| Column      | Type          |
+|-------------|---------------|
+| StockID     | INT (PK)      |
+| ProductID   | INT (FK)      |
+| WarehouseID | INT (FK)      |
+| Quantity    | INT           |
+
+### `LowStockLog` (for alerts)
+| Column     | Type      |
+|------------|-----------|
+| LogID      | INT (PK)  |
+| ProductID  | INT       |
+| Quantity   | INT       |
+| AlertTime  | TIMESTAMP |
+
+## 📥 Sample SQL Files
+
+- `schema.sql` – Create all required tables
+- `insert_data.sql` – Populate with sample data
+- `queries.sql` – Get low stock items, reorder products
+- `triggers.sql` – Alert when quantity < 30
+- `procedures.sql` – Transfer stock between warehouses
+
+## 🚀 How to Run
+
+1. Open your MySQL client (e.g., DBeaver, MySQL Workbench)
+2. Execute `schema.sql`
+3. Run `insert_data.sql` to add sample data
+4. Use `queries.sql` for stock tracking
+5. Execute `triggers.sql` and `procedures.sql` to automate logic
+
+## ✅ Example Queries
+
+### Show Products Below Stock Threshold
+```sql
+SELECT P.ProductName, S.Quantity
+FROM Stock S
+JOIN Products P ON S.ProductID = P.ProductID
+WHERE S.Quantity < 50;
+Transfer Stock Between Warehouses
+sql
+Copy
+Edit
+CALL TransferStock(1, 1, 2, 10);  -- Transfer 10 units of ProductID 1 from Warehouse 1 to 2
+💡 Future Enhancements
+Integrate with a frontend (React/Django)
+
+Generate PDF reports
+
+Add user authentication and roles
+
+Implement automatic reorder emails
+
+📜 License
+This project is developed for educational purposes.
