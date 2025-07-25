@@ -1,0 +1,95 @@
+Schema Overview:
+sql
+Copy
+Edit
+CREATE TABLE Products (
+    ProductID INT PRIMARY KEY,
+    ProductName VARCHAR(100),
+    Price DECIMAL(10,2)
+);
+
+CREATE TABLE Suppliers (
+    SupplierID INT PRIMARY KEY,
+    SupplierName VARCHAR(100),
+    ContactInfo VARCHAR(100)
+);
+
+CREATE TABLE Warehouses (
+    WarehouseID INT PRIMARY KEY,
+    Location VARCHAR(100)
+);
+
+CREATE TABLE Stock (
+    StockID INT PRIMARY KEY,
+    ProductID INT,
+    WarehouseID INT,
+    Quantity INT,
+    FOREIGN KEY (ProductID) REFERENCES Products(ProductID),
+    FOREIGN KEY (WarehouseID) REFERENCES Warehouses(WarehouseID)
+);
+📥 3. Sample Data Insertion
+To simulate real-world use, dummy data was inserted into all tables.
+
+sql
+Copy
+Edit
+INSERT INTO Products VALUES (1, 'Keyboard', 1200.00);
+INSERT INTO Suppliers VALUES (1, 'Tech Distributors', 'tech@distributors.com');
+INSERT INTO Warehouses VALUES (1, 'Chennai');
+INSERT INTO Stock VALUES (1, 1, 1, 40);
+🔎 4. Stock Monitoring Queries
+✅ a. Check Low Stock Products
+sql
+Copy
+Edit
+SELECT P.ProductName, S.Quantity
+FROM Stock S
+JOIN Products P ON S.ProductID = P.ProductID
+WHERE S.Quantity < 50;
+✅ b. Products Needing Reorder
+sql
+Copy
+Edit
+SELECT ProductID, SUM(Quantity) AS TotalStock
+FROM Stock
+GROUP BY ProductID
+HAVING TotalStock < 100;
+🚨 5. Triggers for Low Stock Notification
+A trigger is created to notify (log into a table) when the stock goes below a threshold.
+
+sql
+Copy
+Edit
+CREATE TRIGGER LowStockAlert
+AFTER UPDATE ON Stock
+FOR EACH ROW
+BEGIN
+    IF NEW.Quantity < 30 THEN
+        INSERT INTO LowStockLog(ProductID, Quantity, AlertTime)
+        VALUES (NEW.ProductID, NEW.Quantity, NOW());
+    END IF;
+END;
+Note: LowStockLog is a custom table created to store alerts.
+
+🔄 6. Stored Procedure: Stock Transfer
+sql
+Copy
+Edit
+DELIMITER //
+CREATE PROCEDURE TransferStock(
+    IN productId INT,
+    IN fromWarehouse INT,
+    IN toWarehouse INT,
+    IN amount INT
+)
+BEGIN
+    UPDATE Stock
+    SET Quantity = Quantity - amount
+    WHERE ProductID = productId AND WarehouseID = fromWarehouse;
+
+    UPDATE Stock
+    SET Quantity = Quantity + amount
+    WHERE ProductID = productId AND WarehouseID = toWarehouse;
+END;
+//
+DELIMITER ;
